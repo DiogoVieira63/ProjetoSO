@@ -17,8 +17,12 @@ obj/aurras.o: src/aurras.c
 	gcc -Wall -g -c src/aurras.c -o obj/aurras.o
 
 clean:
-	rm obj/* tmp/* bin/{aurras,aurrasd}
+	-rm obj/* tmp/* bin/aurras bin/aurrasd
+
+open_server:
+	./bin/aurrasd etc/aurrasd.conf bin/aurrasd-filters/
 
 test:
-	bin/aurras samples/sample-1.mp3 tmp/sample-1.mp3
-	bin/aurras samples/sample-2.mp3 tmp/sample-2.mp3
+	bin/aurras transform samples/sample-1-so.m4a tmp/sample-1-so.m4a lento
+	bin/aurras transform samples/sample-1-so.m4a tmp/sample-1-so.m4a rapido
+	bin/aurras status
